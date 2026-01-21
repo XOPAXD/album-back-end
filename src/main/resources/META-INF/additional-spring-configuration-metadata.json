@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.liquibase.enable",
+      "type": "java.lang.Boolean",
+      "description": "Description for spring.liquibase.enable."
+  }
+] }
