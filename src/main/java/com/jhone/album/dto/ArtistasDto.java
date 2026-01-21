@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.jhone.album.entity.Artistas;
 import lombok.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import org.modelmapper.ModelMapper;
 @EqualsAndHashCode(callSuper = false)
 @JsonPropertyOrder({"id","nome"})
 @NoArgsConstructor
-public class ArtistasDto {
+public class ArtistasDto extends RepresentationModel<ArtistasDto> {
     @JsonProperty("id")
     private Long id;
 
