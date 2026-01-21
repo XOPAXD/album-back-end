@@ -15,7 +15,7 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false , length = 255)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
     @OneToOne
