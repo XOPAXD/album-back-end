@@ -1,1 +1,0 @@
-INSERT INTO artistas (nome) VALUES ("EMINEM"), ("RACIONAIS"), ("LINK PARK");
