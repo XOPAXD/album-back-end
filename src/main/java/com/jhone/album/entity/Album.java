@@ -1,7 +1,9 @@
 package com.jhone.album.entity;
 
+import com.jhone.album.dto.AlbumDTO;
 import jakarta.persistence.*;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 @Table(name = "album")
 @Getter
@@ -18,7 +20,11 @@ public class Album {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "artista_id")
     private Artistas artista;
+
+    public static Album create(AlbumDTO albumDTO){
+        return new ModelMapper().map(albumDTO, Album.class);
+    }
 }

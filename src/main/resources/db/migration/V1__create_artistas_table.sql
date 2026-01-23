@@ -15,9 +15,6 @@ alter table artistas
     modify column id bigint not null auto_increment;
 
 alter table album
-    add constraint UKenhfrsyx4al1yjhbmcvu5hgim unique (artista_id);
-
-alter table album
     add constraint FKr8bcyrnf3a81bfdw19heor0bu
         foreign key (artista_id)
-            references artistas (id);
+            references artistas (id)

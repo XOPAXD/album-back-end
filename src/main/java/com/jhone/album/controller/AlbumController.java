@@ -44,6 +44,22 @@ public class AlbumController {
         return new ResponseEntity<>(pagedModel, HttpStatus.OK);
     }
 
+    @PostMapping(produces = {"application/json","application/xml","application/x-yaml"},
+            consumes = {"application/json","application/xml","application/x-yaml"})
+    public AlbumDTO create(@RequestBody AlbumDTO albumDTO){
+        AlbumDTO retorno = albumService.create(albumDTO);
+        retorno.add(linkTo(methodOn(AlbumController.class).findByid(retorno.getId())).withSelfRel());
+        return retorno;
+    }
+
+    @PutMapping(produces = {"application/json","application/xml","application/x-yaml"},
+            consumes = {"application/json","application/xml","application/x-yaml"})
+    public AlbumDTO update(@RequestBody AlbumDTO albumDTO){
+        AlbumDTO retorno = albumService.update(albumDTO);
+        retorno.add(linkTo(methodOn(AlbumController.class).findByid(retorno.getId())).withSelfRel());
+        return retorno;
+    }
+
     @GetMapping(value = "/{id}",produces = {"application/json","application/xml","application/x-yaml"})
     public AlbumDTO findByid(@PathVariable("id") Long id){
         AlbumDTO retorno = albumService.findById(id);
