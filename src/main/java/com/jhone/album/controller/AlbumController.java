@@ -2,6 +2,7 @@ package com.jhone.album.controller;
 
 import com.jhone.album.dto.AlbumDTO;
 import com.jhone.album.service.AlbumService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping("/album")
+@Tag(name = "Album", description = "Endpoints para manutenção de albums")
 public class AlbumController {
 
     private final AlbumService albumService;
