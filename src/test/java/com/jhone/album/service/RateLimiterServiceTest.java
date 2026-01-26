@@ -52,7 +52,7 @@ class RateLimiterServiceTest {
         Bucket bucketA = rateLimiterService.resolveBucket(userA);
         Bucket bucketB = rateLimiterService.resolveBucket(userB);
 
-        // Consome todo o balde do Usuário A
+        // Consome o balde do Usuário A
         for (int i = 0; i < 10; i++) {
             bucketA.tryConsume(1);
         }
