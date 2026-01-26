@@ -5,14 +5,18 @@ import com.jhone.album.dto.AlbumDTO;
 import com.jhone.album.dto.ArtistasDto;
 import com.jhone.album.entity.Album;
 import com.jhone.album.repository.AlbumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AlbumService {
     private final AlbumRepository albumRepository;
     private final ArtistasService artistasService;
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
 
     public AlbumService(AlbumRepository albumRepository, ArtistasService artistasService) {
         this.albumRepository = albumRepository;
@@ -30,6 +34,7 @@ public class AlbumService {
         AlbumDTO album = AlbumDTO.create(albumRepository.save(Album.create(albumDTO)));
         artista = artistasService.findById(album.getArtista().getId());
         album.setArtista(artista);
+        messagingTemplate.convertAndSend("/topic/album", album);
         return album;
     }
 
