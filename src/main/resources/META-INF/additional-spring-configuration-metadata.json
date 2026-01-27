@@ -4,5 +4,10 @@
       "name": "spring.liquibase.enable",
       "type": "java.lang.Boolean",
       "description": "Description for spring.liquibase.enable."
-  }
-] }
+    },
+    {
+      "name": "minio.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for minio.endpoint."
+    }
+  ] }

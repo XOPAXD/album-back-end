@@ -5,22 +5,29 @@ import com.jhone.album.dto.AlbumDTO;
 import com.jhone.album.dto.ArtistasDto;
 import com.jhone.album.entity.Album;
 import com.jhone.album.repository.AlbumRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 @Service
 public class AlbumService {
     private final AlbumRepository albumRepository;
     private final ArtistasService artistasService;
+    private final AlbumStorageService storageService;
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
-    public AlbumService(AlbumRepository albumRepository, ArtistasService artistasService) {
+    public AlbumService(AlbumRepository albumRepository, ArtistasService artistasService, AlbumStorageService storageService) {
         this.albumRepository = albumRepository;
         this.artistasService = artistasService;
+        this.storageService = storageService;
     }
 
     public Page<AlbumDTO> findAll(Pageable pageable, String artista){
@@ -36,6 +43,25 @@ public class AlbumService {
         album.setArtista(artista);
         messagingTemplate.convertAndSend("/topic/album", album);
         return album;
+    }
+
+    @Transactional
+    public Album addCapasAlbum(Long albumId, List<MultipartFile> files) {
+        Album album = albumRepository.findById(albumId)
+                .orElseThrow(() -> new RuntimeException("Álbum não encontrado"));
+
+        files.forEach(file -> {
+            try {
+                String fileName = storageService.uploadImage(file);
+
+                album.getCapas().add(fileName);
+            } catch (IOException e) {
+                throw new RuntimeException("Falha ao processar arquivo: " + file.getOriginalFilename());
+            }
+        });
+
+        // 3. Salva a atualização no banco
+        return albumRepository.save(album);
     }
 
     public AlbumDTO update(AlbumDTO albumDTO){

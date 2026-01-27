@@ -1,6 +1,7 @@
 package com.jhone.album.controller;
 
 import com.jhone.album.dto.AlbumDTO;
+import com.jhone.album.entity.Album;
 import com.jhone.album.service.AlbumService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -11,8 +12,12 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -52,6 +57,16 @@ public class AlbumController {
         AlbumDTO retorno = albumService.create(albumDTO);
         retorno.add(linkTo(methodOn(AlbumController.class).findByid(retorno.getId())).withSelfRel());
         return retorno;
+    }
+
+    @PostMapping(value = "/{id}",produces = {"application/json","application/xml","application/x-yaml"},
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Album> uploadAlbumCovers(
+            @PathVariable("id") Long id,
+            @RequestParam("files") List<MultipartFile> files) {
+
+        Album updatedAlbum = albumService.addCapasAlbum(id, files);
+        return ResponseEntity.ok(updatedAlbum);
     }
 
     @PutMapping(produces = {"application/json","application/xml","application/x-yaml"},
