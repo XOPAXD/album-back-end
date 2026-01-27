@@ -23,7 +23,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
-@RequestMapping("/album")
+@RequestMapping("/v1/album")
 @Tag(name = "Album", description = "Endpoints para manutenção de albums")
 public class AlbumController {
 

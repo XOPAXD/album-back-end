@@ -1,3 +1,10 @@
+
+DROP TABLE IF EXISTS regionais;
+DROP TABLE IF EXISTS album_capas;
+DROP TABLE IF EXISTS album;
+DROP TABLE IF EXISTS artistas;
+
+
 CREATE TABLE IF NOT EXISTS artistas (
         id INT NOT NULL AUTO_INCREMENT,
         nome varchar(200) NOT NULL,

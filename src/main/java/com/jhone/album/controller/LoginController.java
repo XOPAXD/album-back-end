@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/v1/login")
 @Tag(name = "Login", description = "Endpoints para manutenção de login")
 public class LoginController {
 

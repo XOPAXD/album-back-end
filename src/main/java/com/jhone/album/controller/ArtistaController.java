@@ -19,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 
 @RestController
-@RequestMapping("/artistas")
+@RequestMapping("/v1/artistas")
 @Tag(name = "Artistas", description = "Endpoints para manutenção de artistas")
 public class ArtistaController {
     private final ArtistasService artistasService;
