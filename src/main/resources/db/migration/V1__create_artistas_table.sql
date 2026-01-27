@@ -24,3 +24,12 @@ CREATE TABLE IF NOT EXISTS album_capas (
       nome VARCHAR(255),
       FOREIGN KEY (album_id) REFERENCES album(id)
 );
+
+CREATE TABLE IF NOT EXISTS regionais (
+       id_interno BIGINT AUTO_INCREMENT PRIMARY KEY,
+       id_origem INTEGER NOT NULL,
+       nome VARCHAR(200) NOT NULL,
+       ativo BOOLEAN NOT NULL DEFAULT TRUE,
+       criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       INDEX idx_regional_ativo (id_origem, ativo)
+);

@@ -1,6 +1,6 @@
 package com.jhone.album.controller;
 
-import com.jhone.album.dto.ArtistasDto;
+import com.jhone.album.dto.ArtistasDTO;
 import com.jhone.album.service.ArtistasService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -23,9 +23,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @Tag(name = "Artistas", description = "Endpoints para manutenção de artistas")
 public class ArtistaController {
     private final ArtistasService artistasService;
-    private final PagedResourcesAssembler<ArtistasDto> assembler;
+    private final PagedResourcesAssembler<ArtistasDTO> assembler;
 
-    public ArtistaController(ArtistasService artistasService, PagedResourcesAssembler<ArtistasDto> assembler) {
+    public ArtistaController(ArtistasService artistasService, PagedResourcesAssembler<ArtistasDTO> assembler) {
         this.artistasService = artistasService;
         this.assembler = assembler;
     }
@@ -37,31 +37,31 @@ public class ArtistaController {
 
         var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
         Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection,"nome"));
-        Page<ArtistasDto> artistas = artistasService.findAll(pageable);
-        PagedModel<EntityModel<ArtistasDto>> pagedModel = assembler.toModel(artistas);
+        Page<ArtistasDTO> artistas = artistasService.findAll(pageable);
+        PagedModel<EntityModel<ArtistasDTO>> pagedModel = assembler.toModel(artistas);
 
         return new ResponseEntity<>(pagedModel, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}",produces = {"application/json","application/xml","application/x-yaml"})
-    public ArtistasDto findByid(@PathVariable("id") Long id){
-        ArtistasDto retorno = artistasService.findById(id);
+    public ArtistasDTO findByid(@PathVariable("id") Long id){
+        ArtistasDTO retorno = artistasService.findById(id);
         retorno.add(linkTo(methodOn(ArtistaController.class).findByid(id)).withSelfRel());
         return retorno;
     }
 
     @PostMapping(produces = {"application/json","application/xml","application/x-yaml"},
             consumes = {"application/json","application/xml","application/x-yaml"})
-    public ArtistasDto create(@RequestBody ArtistasDto artistasDTO){
-        ArtistasDto retorno = artistasService.create(artistasDTO);
+    public ArtistasDTO create(@RequestBody ArtistasDTO artistasDTO){
+        ArtistasDTO retorno = artistasService.create(artistasDTO);
         retorno.add(linkTo(methodOn(ArtistaController.class).findByid(retorno.getId())).withSelfRel());
         return retorno;
     }
 
     @PutMapping(produces = {"application/json","application/xml","application/x-yaml"},
             consumes = {"application/json","application/xml","application/x-yaml"})
-    public ArtistasDto update(@RequestBody ArtistasDto categoriasDTO){
-        ArtistasDto retorno = artistasService.update(categoriasDTO);
+    public ArtistasDTO update(@RequestBody ArtistasDTO categoriasDTO){
+        ArtistasDTO retorno = artistasService.update(categoriasDTO);
         retorno.add(linkTo(methodOn(ArtistaController.class).findByid(retorno.getId())).withSelfRel());
         return retorno;
     }

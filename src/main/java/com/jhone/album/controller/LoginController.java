@@ -1,6 +1,6 @@
 package com.jhone.album.controller;
 
-import com.jhone.album.dto.LoginDto;
+import com.jhone.album.dto.LoginDTO;
 import com.jhone.album.service.JwtService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@RequestBody LoginDto request) {
+    public String login(@RequestBody LoginDTO request) {
         return jwtService.generateToken(request.getUsername());
     }
 

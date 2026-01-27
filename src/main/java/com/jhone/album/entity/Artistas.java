@@ -1,6 +1,6 @@
 package com.jhone.album.entity;
 
-import com.jhone.album.dto.ArtistasDto;
+import com.jhone.album.dto.ArtistasDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.modelmapper.ModelMapper;
@@ -21,7 +21,7 @@ public class Artistas {
     @Column(name = "nome", nullable = false , length = 200)
     private String nome;
 
-    public static Artistas create(ArtistasDto artistasDto){
+    public static Artistas create(ArtistasDTO artistasDto){
         return new ModelMapper().map(artistasDto, Artistas.class);
     }
 }

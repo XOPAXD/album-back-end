@@ -1,15 +1,13 @@
 package com.jhone.album.service;
 
 import com.jhone.album.Exception.ResourceNotFoundException;
-import com.jhone.album.dto.ArtistasDto;
+import com.jhone.album.dto.ArtistasDTO;
 
 import com.jhone.album.entity.Artistas;
 import com.jhone.album.repository.ArtistasRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class ArtistasService {
@@ -19,32 +17,32 @@ public class ArtistasService {
         this.artistasRepository = artistasRepository;
     }
 
-    public Page<ArtistasDto> findAll(Pageable pageable){
+    public Page<ArtistasDTO> findAll(Pageable pageable){
         var page = artistasRepository.findAll(pageable);
         return page.map(this::convertToArtistasDto);
 
     }
 
-    public ArtistasDto create(ArtistasDto artistasDTO){
-        ArtistasDto artistas = ArtistasDto.create(artistasRepository.save(Artistas.create(artistasDTO)));
+    public ArtistasDTO create(ArtistasDTO artistasDTO){
+        ArtistasDTO artistas = ArtistasDTO.create(artistasRepository.save(Artistas.create(artistasDTO)));
         return artistas;
     }
 
-    public ArtistasDto findById(Long id){
+    public ArtistasDTO findById(Long id){
         var entity = artistasRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("O artista não foi encontrado!"));
 
-        return ArtistasDto.create(entity);
+        return ArtistasDTO.create(entity);
     }
 
-    public ArtistasDto update(ArtistasDto artistasDTO){
+    public ArtistasDTO update(ArtistasDTO artistasDTO){
         artistasRepository.findById(artistasDTO.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("O artista não foi encontrado!"));
 
-        return ArtistasDto.create(artistasRepository.save(Artistas.create(artistasDTO)));
+        return ArtistasDTO.create(artistasRepository.save(Artistas.create(artistasDTO)));
     }
 
-    private ArtistasDto convertToArtistasDto(Artistas artistas){
-        return ArtistasDto.create(artistas);
+    private ArtistasDTO convertToArtistasDto(Artistas artistas){
+        return ArtistasDTO.create(artistas);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.jhone.album.Exception.ResourceNotFoundException;
-import com.jhone.album.dto.ArtistasDto;
+import com.jhone.album.dto.ArtistasDTO;
 import com.jhone.album.entity.Artistas;
 import com.jhone.album.repository.ArtistasRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +34,7 @@ class ArtistasServiceTest {
     private ArtistasService artistasService;
 
     private Artistas artista;
-    private ArtistasDto artistaDto;
+    private ArtistasDTO artistaDto;
 
     @BeforeEach
     void setUp() {
@@ -42,7 +42,7 @@ class ArtistasServiceTest {
         artista.setId(1L);
         artista.setNome("Nome do Artista");
 
-        artistaDto = ArtistasDto.create(artista);
+        artistaDto = ArtistasDTO.create(artista);
     }
 
     @Test
@@ -53,7 +53,7 @@ class ArtistasServiceTest {
 
         when(artistasRepository.findAll(pageable)).thenReturn(page);
 
-        Page<ArtistasDto> result = artistasService.findAll(pageable);
+        Page<ArtistasDTO> result = artistasService.findAll(pageable);
 
         assertThat(result).isNotEmpty();
         assertThat(result.getContent().get(0).getId()).isEqualTo(artista.getId());
@@ -65,7 +65,7 @@ class ArtistasServiceTest {
     void deveCriarArtistaComSucesso() {
         when(artistasRepository.save(any(Artistas.class))).thenReturn(artista);
 
-        ArtistasDto result = artistasService.create(artistaDto);
+        ArtistasDTO result = artistasService.create(artistaDto);
 
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(artista.getId());
@@ -77,7 +77,7 @@ class ArtistasServiceTest {
     void deveRetornarArtistaPorIdComSucesso() {
         when(artistasRepository.findById(1L)).thenReturn(Optional.of(artista));
 
-        ArtistasDto result = artistasService.findById(1L);
+        ArtistasDTO result = artistasService.findById(1L);
 
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(1L);
@@ -99,7 +99,7 @@ class ArtistasServiceTest {
         when(artistasRepository.findById(artistaDto.getId())).thenReturn(Optional.of(artista));
         when(artistasRepository.save(any(Artistas.class))).thenReturn(artista);
 
-        ArtistasDto result = artistasService.update(artistaDto);
+        ArtistasDTO result = artistasService.update(artistaDto);
 
         assertThat(result).isNotNull();
         verify(artistasRepository).save(any(Artistas.class));

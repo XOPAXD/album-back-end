@@ -13,14 +13,14 @@ import org.springframework.hateoas.RepresentationModel;
 @EqualsAndHashCode(callSuper = false)
 @JsonPropertyOrder({"id","nome"})
 @NoArgsConstructor
-public class ArtistasDto extends RepresentationModel<ArtistasDto> {
+public class ArtistasDTO extends RepresentationModel<ArtistasDTO> {
     @JsonProperty("id")
     private Long id;
 
     @JsonProperty("nome")
     private String nome;
 
-    public static ArtistasDto create(Artistas artistas){
-        return new ModelMapper().map(artistas, ArtistasDto.class);
+    public static ArtistasDTO create(Artistas artistas){
+        return new ModelMapper().map(artistas, ArtistasDTO.class);
     }
 }

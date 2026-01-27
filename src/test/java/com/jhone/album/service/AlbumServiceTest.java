@@ -7,11 +7,10 @@ import java.util.Optional;
 
 import com.jhone.album.Exception.ResourceNotFoundException;
 import com.jhone.album.dto.AlbumDTO;
-import com.jhone.album.dto.ArtistasDto;
+import com.jhone.album.dto.ArtistasDTO;
 import com.jhone.album.entity.Album;
 import com.jhone.album.entity.Artistas;
 import com.jhone.album.repository.AlbumRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,7 +66,7 @@ class AlbumServiceTest {
     void deveCriarUmAlbumEAssociarOArtistaComSucesso() {
         Long artistaId = 10L;
 
-        ArtistasDto artistaDtoInput = new ArtistasDto();
+        ArtistasDTO artistaDtoInput = new ArtistasDTO();
         artistaDtoInput.setId(artistaId);
 
         AlbumDTO inputDto = new AlbumDTO();
@@ -82,7 +81,7 @@ class AlbumServiceTest {
         artistaEntidade.setId(artistaId);
         albumEntidadeSalva.setArtista(artistaEntidade);
 
-        ArtistasDto artistaDtoCompleto = new ArtistasDto();
+        ArtistasDTO artistaDtoCompleto = new ArtistasDTO();
         artistaDtoCompleto.setId(artistaId);
         artistaDtoCompleto.setNome("Teste");
 

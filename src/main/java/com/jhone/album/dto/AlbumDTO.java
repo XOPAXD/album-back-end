@@ -2,7 +2,6 @@ package com.jhone.album.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jhone.album.entity.Album;
-import jakarta.persistence.ElementCollection;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
@@ -22,7 +21,7 @@ public class AlbumDTO extends RepresentationModel<AlbumDTO> {
     @JsonProperty("nome")
     private String nome;
 
-    private ArtistasDto artista;
+    private ArtistasDTO artista;
 
     @JsonProperty("capas")
     private List<String> capas = new ArrayList<>();

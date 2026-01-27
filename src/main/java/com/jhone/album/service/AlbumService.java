@@ -2,7 +2,7 @@ package com.jhone.album.service;
 
 import com.jhone.album.Exception.ResourceNotFoundException;
 import com.jhone.album.dto.AlbumDTO;
-import com.jhone.album.dto.ArtistasDto;
+import com.jhone.album.dto.ArtistasDTO;
 import com.jhone.album.entity.Album;
 import com.jhone.album.repository.AlbumRepository;
 import jakarta.transaction.Transactional;
@@ -37,7 +37,7 @@ public class AlbumService {
     }
 
     public AlbumDTO create(AlbumDTO albumDTO){
-        ArtistasDto artista;
+        ArtistasDTO artista;
         AlbumDTO album = AlbumDTO.create(albumRepository.save(Album.create(albumDTO)));
         artista = artistasService.findById(album.getArtista().getId());
         album.setArtista(artista);
