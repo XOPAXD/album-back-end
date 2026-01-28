@@ -114,8 +114,3 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ---
 
-```
-
-**Deseja que eu gere também um arquivo `.gitignore` otimizado para que as pastas do Maven, Docker e da sua IDE não "sujem" o seu repositório Git?**
-
-```
