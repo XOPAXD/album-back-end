@@ -1,8 +1,7 @@
-```markdown
 # 📸 Projeto Álbum
 
-API desenvolvida com **Spring Boot** para o gerenciamento de álbuns e fotografias. O projeto utiliza **MySQL** para dados relacionais e **MinIO** (S3 Compatible) para o armazenamento dos arquivos físicos de imagem.
 
+API desenvolvida com **Spring Boot** para o gerenciamento de álbuns e fotografias. O projeto utiliza **MySQL** para dados relacionais e **MinIO** (S3 Compatible) para o armazenamento dos arquivos físicos de imagem.
 ## 🛠️ Stack Tecnológica
 
 * **Backend:** Java 17, Spring Boot 3
@@ -17,9 +16,15 @@ API desenvolvida com **Spring Boot** para o gerenciamento de álbuns e fotografi
 
 ### 1. Clonar o Repositório
 Abra o seu terminal e utilize um dos comandos abaixo:
-
 **Via HTTPS:**
-```bash
+
+```markdown
+
+
+
+
+
+
 git clone [https://github.com/XOPAXD/album-back-end.git](https://github.com/XOPAXD/album-back-end.git)
 cd album-back-end
 
