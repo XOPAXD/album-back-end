@@ -1,6 +1,8 @@
-# 📸 Projeto Álbum
+# 📸 Projeto Álbum - Back-End
 
-
+### Vaga: Desenvolvedor Java
+### Nome : Jhone da silva ferreira
+### CPF: 03727640103
 API desenvolvida com **Spring Boot** para o gerenciamento de álbuns e fotografias. O projeto utiliza **MySQL** para dados relacionais e **MinIO** (S3 Compatible) para o armazenamento dos arquivos físicos de imagem.
 ## 🛠️ Stack Tecnológica
 
