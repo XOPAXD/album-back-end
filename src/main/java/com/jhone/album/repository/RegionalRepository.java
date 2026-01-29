@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface RegionalRepository extends JpaRepository<Regional, Long> {
     List<Regional> findByAtivoTrue();
-
-    Regional findByIdAndAtivoTrue(Integer id);
 }

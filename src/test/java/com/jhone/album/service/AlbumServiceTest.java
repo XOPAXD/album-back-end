@@ -33,17 +33,15 @@ class AlbumServiceTest {
     @Test
     @DisplayName("Deve retornar Album por ID com sucesso")
     void deveRetornarAlbumPorIdComSucesso() {
-        // Arrange
+
         Long id = 1L;
-        Album album = new Album(); // Supondo que você tenha um construtor ou builder
+        Album album = new Album();
         album.setId(id);
 
         when(albumRepository.findById(id)).thenReturn(Optional.of(album));
 
-        // Act
         AlbumDTO result = albumService.findById(id);
 
-        // Assert
         assertNotNull(result);
         assertEquals(id, result.getId());
         verify(albumRepository, times(1)).findById(id);
@@ -52,11 +50,9 @@ class AlbumServiceTest {
     @Test
     @DisplayName("Deve lançar ResourceNotFoundException quando ID não existir")
     void deveLancarResourceNotFoundExceptionQuandoIdNaoExistir() {
-        // Arrange
         Long id = 99L;
         when(albumRepository.findById(id)).thenReturn(Optional.empty());
 
-        // Act & Assert
         assertThrows(ResourceNotFoundException.class, () -> albumService.findById(id));
         verify(albumRepository, times(1)).findById(id);
     }
@@ -102,12 +98,10 @@ class AlbumServiceTest {
     @Test
     @DisplayName("Deve lançar exceção ao tentar atualizar álbum inexistente")
     void deveLançarExceçãoAoTentarAtualizarAlbumInexistente() {
-        // Arrange
         AlbumDTO dto = new AlbumDTO();
         dto.setId(1L);
         when(albumRepository.findById(1L)).thenReturn(Optional.empty());
 
-        // Act & Assert
         assertThrows(ResourceNotFoundException.class, () -> albumService.update(dto));
         verify(albumRepository, never()).save(any());
     }

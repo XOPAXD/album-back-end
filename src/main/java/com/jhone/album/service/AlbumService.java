@@ -60,7 +60,6 @@ public class AlbumService {
             }
         });
 
-        // 3. Salva a atualização no banco
         return albumRepository.save(album);
     }
 
